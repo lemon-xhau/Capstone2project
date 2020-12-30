@@ -1,0 +1,245 @@
+*{ 
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+ }
+ html{
+ 	scroll-behavior: smooth;
+ }
+ .navbar {
+ 	padding: 10px 16px;
+ }
+.bg-dark {
+    background-color: #adb5bd!important;
+}
+img{
+	width: 155px;
+    margin-top: -17px;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff;
+    font-size: 20px;
+    padding-right: 24px;
+}
+.navbar-dark .navbar-nav .nav-link:hover{
+	color: #41444d;
+}
+.container{
+	margin-top: 60px;
+	padding-top: 35px;
+	padding-bottom: 35px;
+	max-width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	display: flex;
+	background-color: #dee2e633;
+
+}
+
+
+.content{
+	width: 715px;
+}
+.btn-primary{
+	background-color: #EC5113;
+    border-color: #EC5113;
+}
+.btn-primary:hover{
+	background-color: #0072fffa;
+	border-color:#0072fffa;
+}
+.countWords{
+	display: inline;
+    float: right;
+    padding: 6px 15px;
+    border-radius: 5px;
+    border: 2px solid #EC5113;
+}
+#right{
+	margin-left: 58px;
+}
+#right .buttons_content{
+	display: flex;
+	text-transform: uppercase;
+}
+#right .text-content{
+	padding-top: 4px;
+	padding-left: 30px;
+	display: flex;
+}
+/*#right .text-content{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}*/
+#right .text-content h4{
+	/*display: inline;*/
+	text-transform: uppercase;
+}
+#topic{
+	
+	text-decoration: underline;
+    text-decoration-style: double;
+}
+#text-content-summarization-hide{
+	font-weight: bolder;	
+}
+#left .custom-sentence{
+	width: 113px;
+    margin-left: 118px;
+    margin-bottom: 20px;
+    margin-top: -10px;
+}
+.content .text textarea{
+	width: 715px;
+	height: 400px;
+	border: 3px solid #EC5113;
+	border-radius: 3px;
+	padding: .475rem .85rem;
+
+}
+
+#textleft:focus{
+	outline: none !important;
+	border:4px solid red;
+}
+#textright:focus{
+	outline: none !important;
+	border:4px solid red;
+}
+#textright_mid:focus{
+	outline: none !important;
+	border:4px solid red;
+}
+#textright_buttom:focus{
+	outline: none !important;
+	border:4px solid red;
+}
+.container .buttons{
+	margin-bottom: 20px;
+}
+
+.btn-secondary {
+	background-color: #EC5113;
+	border-color: #EC5113;
+}
+.btn-secondary:hover{
+	background-color:#0072fffa;
+	border-color: #0072fffa;
+}
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    background-color: #0072fffa;
+    border-color: #0072fffa;
+
+}
+.btn-secondary.focus, .btn-secondary:focus{
+	box-shadow: 0 0 0 0.2rem #0095ff99;
+}
+.about{
+	background-color: #1c1f2299;
+	color: #fff;
+	text-align: center;
+	padding-bottom: 100px;
+	padding-top: 100px;
+
+
+}
+#listnsd-top{
+	margin-top: 70px;
+}
+.listnsd{
+	display: flex;
+	margin-bottom: 20px;
+	background-color: 
+
+}
+.items{
+	max-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1.7px solid #dee2e6;
+	border-radius: 5px;
+	color: black;
+}
+.items i{
+	font-size: 30px;
+	padding: 20px;
+	border-radius: 50%;
+	background-color: #EC5113;
+	color: #fff;
+}
+.items:hover i{
+	background-color:#fff ;
+	color: #EC5113;
+}
+.padding-items{
+	padding: 20px;
+}
+.items:hover{
+	background-color: #EC5113;	
+	color: #fff;
+	transition: all .2s ease-in-out 0s;
+}
+
+#nguoisudung{
+	background-color: #fff;
+	color: black;
+}
+.about .content-section{
+	margin-right: auto;
+	margin-left: auto; 
+	max-width: 1240px;
+}
+
+ .overlay {
+  height: 100%;
+  width: 100%;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color:#b8bfc8;
+  color: #fff;
+}
+
+.overlay-content {
+  position: relative;
+  top: 25%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+}
+.page-footer{
+	background-color: #6c757d;
+	color: #fff;
+}

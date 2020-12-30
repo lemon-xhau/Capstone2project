@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Capstone2</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.1.9/docxtemplater.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.6.1/jszip.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link rel="stylesheet" href="static/capstone2style.css">
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+</head>
+<body>
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" >
+	  <!-- Brand -->
+	  <a class="navbar-brand" href="#"><img src="static/logo.png" alt=""></a>
+
+	  <!-- Links -->
+	  <ul class="navbar-nav">
+	    <li class="nav-item">
+	      	<a class="nav-link" href="#gioithieu" onclick="openNav()">Giới thiệu</a>
+	    </li>
+	    <li class="nav-item">
+	      	<a class="nav-link" href="#nguoisudung" onclick="openNav()">Người sử dụng</a>
+	    </li>
+	    
+	    
+	</nav>
+	<div class="container">
+		<div class="content input" id="left">
+      <form name="summarize" method = "POST" onsubmit="return functionSummaration()" required>
+        <div class="buttons">
+          <input onclick="functionDelete()" class="btn btn-primary" type="button" value="Xóa văn bản">
+          <input class="btn btn-primary" id="tuychinhtheocau" type="button" value="Tùy chỉnh theo câu">
+          <input class="btn btn-primary" id="tudongtomtat" type="submit" value="Tự động tóm tắt">
+          <p class="countWords" id="count_left">0/20000</p>
+        </div>
+        <div class="custom-sentence">
+          <input type="text" class="form-control" placeholder="Nhập số câu" value = "0" name = "num_sentences" onkeyup="checkInput(this)">
+        </div>
+        <div class="text">
+          <textarea id="textleft" spellcheck="false" name = "textuser" placeholder="Sao chép và dán văn bản hoặc URL bài viết của bạn ở đây" maxlength="20000">{{ textinput }}</textarea>
+        </div>
+      </form>
+			<form action="/action_page.php">
+				<!-- <input id="myFile"  class="btn btn-primary" type="file"  name="filename" onchange='openFile(event)'> -->
+				<input id="myFile" onchange ="functionImport()" class="btn btn-primary" type="file"  name="filename" >
+				<!-- <input id="import" onclick="functionImport()" onchange='openFile(event)'class="btn btn-primary" type="button" value="Tải tệp"> -->
+			</form>
+		</div>
+		<div class="content output" id="right">
+			<div class="buttons">
+				<input id="result_top" onclick="functionResultTop()" class="btn btn-primary" type="button" value="Kết quả - ENDGAME">
+				<input id="result_mid"  onclick="functionResultMid()" class="btn btn-primary" type="button" value="Kết quả - SumBasic">
+				<input id="result_buttom" onclick="functionResultButtom()" class="btn btn-primary" type="button" value="Kết quả - TextRank">
+        <p class="countWords" id="count_right">0</p>
+			</div>
+				
+
+			<div class="text">
+				<textarea id="textright" placeholder="Kết quả sau khi tóm tắt " readonly spellcheck="false">{{ result }}</textarea>
+				<textarea id="textright_top" placeholder="Kết quả sau khi tóm tắt " style="display: none;" readonly spellcheck="false" >{{ result }}</textarea>
+				<textarea id="textright_mid" placeholder="Kết quả sau khi tóm tắt " style="display: none;" readonly spellcheck="false" >{{ result2 }}</textarea>
+				<textarea id="textright_buttom" placeholder="Kết quả sau khi tóm tắt " style="display: none;" readonly spellcheck="false" >{{ result3 }}</textarea>
+			</div>
+			<div class="buttons_content">
+				<div class="buttons">
+					<input  onclick="functionCopy()" class="btn btn-primary" id="copy" type="button" value="Sao chép">
+					<input  onclick="exportHTML()" class="btn btn-primary" id="btn-export" type="button" value="Xuất File">
+			<!-- <input  onclick="createPDF()" class="btn btn-primary" id="btn-createPDF" type="button" value="Xuất File PDF"> -->
+				</div>
+				<div class="text-content">
+					<h4 >CHỦ ĐỀ &nbsp;</h4>
+					<!-- chem du lieu topic vo the h4 co id = topic nhé -->
+					<h4 id="topic">{{ predicttopic }}</h4>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<section class="about" id="gioithieu">
+		<div class="content-section">
+			<h1>GIỚI THIỆU</h1>
+			<p>Để giúp bạn tóm tắt và phân tích các văn bản tin tức, bài viết, chúng tôi cung cấp cho bạn "Công cụ tóm tắt ENDGAME": một hệ thống xác định và tóm tắt những ý tưởng và sự kiện quan trọng của tài liệu của bạn. Tóm tắt trong 1-Click, đi đến ý chính hoặc đọc lướt qua để sau đó bạn có thể phân tích diễn giải các văn bản của bạn một cách nhanh chóng và phát triển các tổng hợp của bạn.</p>
+				
+		</div>
+	</section>
+	<section class="about" id="nguoisudung">
+		<div class="content-section" >
+			<h1>NGƯỜI SỬ DỤNG</h1>
+			<div class="listnsd" id="listnsd-top">
+				<div class="items">
+					<div class="padding-items">
+						<i class="fa fa-group"></i>
+						<h4>Sinh viên</h4>
+						<p>Với trang web, tóm tắt các bài học và trang Wikipedia của bạn trong vài giây giúp tăng năng suất học tập của bạn.</p>
+					</div>
+				</div>
+				<div class="items">
+					<div class="padding-items">
+						<i class="fa fa-pencil"></i>
+						<h4>Người đọc tin tức</h4>
+						<p>Nếu bạn thích thông tin tóm tắt các sự kiện chính trên các trang báo, thì ENDGAME là dành cho bạn!</p>
+					</div>	
+				</div>
+				<div class="items">
+					<div class="padding-items">
+						<i class="fa fa-tasks"></i>
+						<h4>Người hiệu chỉnh</h4>
+						<p>Xác định và hiểu rất nhanh các sự kiện và ý tưởng của các văn bản của bạn</p>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- footer -->
+	<footer class="page-footer font-small blue pt-4">
+	  <!-- Footer Links -->
+	  <div class="container-fluid text-center text-md-left">
+	    <!-- Grid row -->
+		    <div class="row">
+			      <!-- Grid column -->
+			     <div class="col-md-6 mt-md-0 mt-3">
+			        <!-- Content -->
+			        <h5 class="text-uppercase">Nhóm phát triển</h5>
+			        <p> Chúng tôi là nhóm ENDGAME sinh viên <br> Đại học Duy Tân và đây là sản phẩm Capstone2.<p>
+
+			     </div>
+			      <!-- Grid column -->
+
+			      <hr class="clearfix w-100 d-md-none pb-3">
+
+			      <!-- Grid column -->
+			      <div class="col-md-3 mb-md-0 mb-3">
+
+			        <!-- Links -->
+			        <h5 class="text-uppercase">Thành viên</h5>
+			        <p>Văn Ngọc Ninh</p>
+			        <p>Cái Xuân Hậu</p>
+			        <p>Trương Nhật Minh</p>
+			        <p>Nguyễn Phương Nam</p>
+			      </div>
+		      <!-- Grid column -->
+
+		      <!-- Grid column -->
+		      <div class="col-md-3 mb-md-0 mb-3">
+		        <!-- Links -->
+		        <h5 class="text-uppercase">Liên hệ</h5>
+		      </div>
+		      <!-- Grid column -->
+
+		    </div>
+	    <!-- Grid row -->
+	  </div>
+	  <!-- Footer Links -->
+
+	  <!-- Copyright -->
+	  <div class="footer-copyright text-center py-3">© 2020 Copyright:VanNgocNinh</div>
+	  <!-- Copyright -->
+	</footer>
+	<!-- Footer -->
+	
+	<script src="static/main.js"></script>
+</body>
+</html>
